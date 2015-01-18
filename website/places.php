@@ -44,7 +44,7 @@
 		
 		$osm_ids = explode(',', $_GET['osm_ids']);
 		
-		if ( count($osm_ids) > CONST_ReverseSearch_Max_IDs ) 
+		if ( count($osm_ids) > CONST_Places_Max_ID_count ) 
 		{
 			echo 'Bulk User: Only ' .  CONST_ReverseSearch_Max_IDs . " ids are allowed in one request.\n";
 			exit;

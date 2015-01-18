@@ -92,7 +92,7 @@
 	@define('CONST_Search_TryDroppedAddressTerms', false);
 	@define('CONST_Search_NameOnlySearchFrequencyThreshold', false);
 
-	@define('CONST_ReverseSearch_Max_IDs', 100);
+	@define('CONST_Places_Max_ID_count', 300);
 
 	// Set to zero to disable polygon output
 	@define('CONST_PolygonOutput_MaximumTypes', 1);
