@@ -48,6 +48,31 @@
 
 		//if (!$iPlaceID) $sError = 'OSM ID Not Found';
 	}
+	else if (isset($_GET['osm_ids']))
+	{
+		$oPlaceLookup = new PlaceLookup($oDB);
+		$oPlaceLookup->setLanguagePreference($aLangPrefOrder);
+		$oPlaceLookup->setIncludeAddressDetails($bShowAddressDetails);
+		
+		$osm_ids = explode(',', $_GET['osm_ids']);
+		
+		if ( count($osm_ids) > CONST_ReverseSearch_Max_IDs ) 
+			$sError = 'Only ' .  CONST_ReverseSearch_Max_IDs . ' ids are allowed in one request.';
+		else
+		{
+			$type = ''; 
+			$id = 0;
+			foreach ($osm_ids AS $item) 
+			{
+				$type = $item[0];
+				$id = (int) substr($item, 1);
+				if ( $id > 0 && ($type == 'N' || $type == 'W' || $type == 'R') )
+				{
+					$oPlaceLookup->setOSMID($type, $id);
+				}
+			}
+		}
+	}
 	else
 	{
 		$oReverseGeocode = new ReverseGeocode($oDB);
